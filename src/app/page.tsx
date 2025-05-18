@@ -694,7 +694,8 @@ export default function BarChartRace() {
         })}
       </div>
       {frames.length === 0 && <p style={{ textAlign: "center" }}>Loading…</p>}
-      <svg ref={svgRef} width={W} height={H} />
+      {/* <svg ref={svgRef} width={W} height={H} /> */}
+      <svg ref={svgRef} width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" />
       {/* play / pause */}
       <button
         onClick={() => setPlay((p) => !p)}
