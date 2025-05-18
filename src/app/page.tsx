@@ -365,7 +365,7 @@ export default function BarChartRace() {
           .tickFormat((d) => d3.format(",")(d as number))
       )
       .call((g) => g.selectAll("line").attr("stroke", "#ccc"))
-      .call((g) => g.select(".domain").attr("stroke", "#999"))
+      .call((g) => g.select(".domain").attr("stroke", "#fff"))
       .call((g) =>
         g.selectAll("text").attr("fill", "#666").style("font-size", "12px")
       );
@@ -639,32 +639,10 @@ export default function BarChartRace() {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      {frames.length === 0 && <p style={{ textAlign: "center" }}>Loading…</p>}
-      <svg ref={svgRef} width={W} height={H} />
-      {/* play / pause */}
-      <button
-        onClick={() => setPlay((p) => !p)}
-        style={{
-          position: "absolute",
-          left: 30,
-          bottom: 35,
-          width: 46,
-          height: 46,
-          borderRadius: "50%",
-          background: "#333",
-          color: "#fff",
-          border: "none",
-          fontSize: 24,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 2px 4px rgba(0,0,0,.3)",
-          cursor: "pointer",
-        }}
-      >
-        {play ? "❚❚" : "▶"}
-      </button>
-      
+      <div className="font-bold text-[36px]">Population growth per country 1950 to 2021</div>
+      <div className="flex items-center gap-2 text-[24px] mb-5">Click on the legend below to filter by continent
+        <img src="/hand-point-down.svg" width={30} height={30}></img>
+      </div>
       <div style={{ position: "relative", left: 30, fontSize: 13 }}>
         <span style={{ fontSize: 16, fontWeight: "bold", color: "#000000" }}>
           Region
@@ -715,10 +693,31 @@ export default function BarChartRace() {
           );
         })}
       </div>
-
-
-
-
+      {frames.length === 0 && <p style={{ textAlign: "center" }}>Loading…</p>}
+      <svg ref={svgRef} width={W} height={H} />
+      {/* play / pause */}
+      <button
+        onClick={() => setPlay((p) => !p)}
+        style={{
+          position: "relative",
+          left: 30,
+          bottom: 50,
+          width: 46,
+          height: 46,
+          borderRadius: "50%",
+          background: "#333",
+          color: "#fff",
+          border: "none",
+          fontSize: 24,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 2px 4px rgba(0,0,0,.3)",
+          cursor: "pointer",
+        }}
+      >
+        {play ? "❚❚" : "▶"}
+      </button>
       {/* <div style={{ position: "relative", left: 30, fontSize: 13 }}>
         <span style={{ fontSize: 16, fontWeight: "bold", color: "#000000" }}>
           Region
@@ -738,6 +737,7 @@ export default function BarChartRace() {
           </span>
         ))}
       </div> */}
+      <div>Source: <a className="underline underline-offset-1" href="https://ourworldindata.org/" target="_blank">Our World In Data</a></div>
     </div>
   );
 }
